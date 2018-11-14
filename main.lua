@@ -43,14 +43,14 @@ function love.load()
   resetGame()
 end
 
-function resetGame()
+local function resetGame()
   initSnake()
   placeRandomApple()
 end
 
 -- create the snake, facing upward towards center 
 -- of grid, and with a starting length
-function initSnake()
+local function initSnake()
   for k,v in pairs(snake) do snake[k] = nil end
   for i = 1, INITIAL_SNAKE_LENGTH do
     snake[i] = { col = GRID_SIZE/2 , row = GRID_SIZE/2 + i } 
@@ -65,7 +65,7 @@ end
 -- if the snake gets so long that there are few empty
 -- spaces. but that's so unlikely that we settle 
 -- for this simple algorithm for now.
-function placeRandomApple()
+local function placeRandomApple()
   local appleIsClearOfSnake = true
   repeat
     apple.col = math.random(1, GRID_SIZE)
@@ -198,7 +198,7 @@ function love.draw()
   -- center game within castle window
   love.graphics.push()
   gTranslateScreenToCenterDx = 0.5 * (love.graphics.getWidth() - GAME_WIDTH)
-  gTranslateScreenToCenterDy = 0.5 * (love.graphics.getHeight() - GAME_WIDTH)
+  gTranslateScreenToCenterDy = 0.5 * (love.graphics.getHeight() - GAME_HEIGHT)
   love.graphics.translate(gTranslateScreenToCenterDx, gTranslateScreenToCenterDy)
 
   -- ground
