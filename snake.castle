@@ -1,6 +1,8 @@
 ---
 main: main.lua
-name: Snake
-coverImageUrl: https://raw.githubusercontent.com/schazers/castle-tutorial-2-snake/master/logo.png
+title: Snake
+owner: schazers
+primaryColor: 4ccc4c
+coverImage: logo.png
 description: A simple snake example for Castle.
 
