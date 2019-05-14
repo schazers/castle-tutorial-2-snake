@@ -1,11 +1,8 @@
 -- Castle Example: Snake
--- http://www.playcastle.io
+-- https://www.castle.games
 
 -- Constants
-local GAME_WIDTH = 512
-local GAME_HEIGHT = GAME_WIDTH
 local GRID_SIZE = 24
-local SQUARE_SIZE = (GAME_WIDTH / GRID_SIZE)
 local TICK_SECONDS = 0.05
 local INITIAL_SNAKE_LENGTH = 5
 local GAME_OVER_WAIT_SECONDS = 0.75
@@ -194,27 +191,22 @@ function love.keypressed(key, scancode, isrepeat)
 end
 
 function love.draw()
-
-  -- center game within castle window
-  love.graphics.push()
-  gTranslateScreenToCenterDx = 0.5 * (love.graphics.getWidth() - GAME_WIDTH)
-  gTranslateScreenToCenterDy = 0.5 * (love.graphics.getHeight() - GAME_HEIGHT)
-  love.graphics.translate(gTranslateScreenToCenterDx, gTranslateScreenToCenterDy)
-
   -- ground
   love.graphics.setColor(0.075, 0.075, 0.1, 1.0)
-  love.graphics.rectangle("fill", 0, 0, GAME_WIDTH, GAME_HEIGHT)
+  love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
 
   -- frame
   love.graphics.setColor(1.0, 1.0, 1.0, 1.0)
-  love.graphics.rectangle("line", 0, 0, GAME_WIDTH, GAME_HEIGHT)
+  love.graphics.rectangle("line", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
 
+  local squareSize = (love.graphics.getWidth() / GRID_SIZE)
+  
   -- apple
   love.graphics.setColor(1.0, 0.4, 0.4, 1.0)
-  love.graphics.rectangle("fill", (apple.col - 1) * SQUARE_SIZE,
-                                  (apple.row - 1) * SQUARE_SIZE,
-                                  SQUARE_SIZE,
-                                  SQUARE_SIZE)
+  love.graphics.rectangle("fill", (apple.col - 1) * squareSize,
+                                  (apple.row - 1) * squareSize,
+                                  squareSize,
+                                  squareSize)
 
   -- snake
   for i = 1, #snake do
@@ -223,12 +215,9 @@ function love.draw()
     else
       love.graphics.setColor(0.3, 0.8, 0.3, 1.0)
     end
-    love.graphics.rectangle("fill", (snake[i].col - 1) * SQUARE_SIZE,
-                                    (snake[i].row - 1) * SQUARE_SIZE,
-                                    SQUARE_SIZE,
-                                    SQUARE_SIZE)
+    love.graphics.rectangle("fill", (snake[i].col - 1) * squareSize,
+                                    (snake[i].row - 1) * squareSize,
+                                    squareSize,
+                                    squareSize)
   end
-
-  -- center game within castle window
-  love.graphics.pop()
 end
